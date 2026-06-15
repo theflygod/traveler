@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>导入文档 - 旅游知识库</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .back-link {
+            color: #667eea;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .upload-section {
+            margin: 30px 0;
+        }
+
+        .drop-zone {
+            border: 3px dashed #667eea;
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            background: #f9f9ff;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .drop-zone:hover, .drop-zone.dragover {
+            background: #f0f0ff;
+            border-color: #764ba2;
+        }
+
+        .drop-zone p {
+            color: #666;
+            margin: 10px 0;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .btn-select {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 10px;
+        }
+
+        .file-list {
+            margin: 20px 0;
+        }
+
+        .file-item {
+            background: #f7f7f7;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .file-name {
+            color: #333;
+        }
+
+        .file-remove {
+            color: #ff4444;
+            cursor: pointer;
+            font-size: 1.2em;
+        }
+
+        .btn-import {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+
+        .btn-import:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-import:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .progress {
+            display: none;
+            margin: 20px 0;
+        }
+
+        .progress-bar {
+            background: #f0f0f0;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 30px;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .result {
+            display: none;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .result.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .result.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .or-divider {
+            text-align: center;
+            margin: 30px 0;
+            color: #999;
+            position: relative;
+        }
+
+        .or-divider::before,
+        .or-divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 40%;
+            height: 1px;
+            background: #ddd;
+        }
+
+        .or-divider::before {
+            left: 0;
+        }
+
+        .or-divider::after {
+            right: 0;
+        }
+
+        .btn-directory {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.1em;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+        }
+
+        .btn-directory:hover {
+            background: #f9f9ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-link">← 返回首页</a>
+        <h1>📤 导入文档</h1>
+        <p style="color: #666;">上传Markdown文件或从数据目录导入</p>
+
+        <div class="upload-section">
+            <h3>方式一：上传文件</h3>
+            <div class="drop-zone" id="dropZone">
+                <p style="font-size: 3em;">📄</p>
+                <p>拖拽Markdown文件到此处</p>
+                <p>或点击选择文件</p>
+                <button class="btn-select" onclick="document.getElementById('fileInput').click()">
+                    选择文件
+                </button>
+                <input type="file" id="fileInput" class="file-input" multiple accept=".md">
+            </div>
+
+            <div class="file-list" id="fileList"></div>
+
+            <button class="btn-import" id="importBtn" onclick="importFiles()" disabled>
+                开始导入
+            </button>
+        </div>
+
+        <div class="or-divider">或</div>
+
+        <div class="upload-section">
+            <h3>方式二：从数据目录导入</h3>
+            <p style="color: #666; margin-bottom: 15px;">
+                导入 files/数据 目录下的所有Markdown文件
+            </p>
+            <button class="btn-directory" onclick="importDirectory()">
+                📂 导入数据目录
+            </button>
+        </div>
+
+        <div class="progress" id="progress">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill">0%</div>
+            </div>
+        </div>
+
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        let selectedFiles = [];
+
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('fileInput');
+        const fileList = document.getElementById('fileList');
+        const importBtn = document.getElementById('importBtn');
+
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('dragover');
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('dragover');
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('dragover');
+
+            const files = Array.from(e.dataTransfer.files).filter(f => f.name.endsWith('.md'));
+            addFiles(files);
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            const files = Array.from(e.target.files);
+            addFiles(files);
+        });
+
+        function addFiles(files) {
+            selectedFiles = [...selectedFiles, ...files];
+            updateFileList();
+        }
+
+        function removeFile(index) {
+            selectedFiles.splice(index, 1);
+            updateFileList();
+        }
+
+        function updateFileList() {
+            if (selectedFiles.length === 0) {
+                fileList.innerHTML = '';
+                importBtn.disabled = true;
+                return;
+            }
+
+            fileList.innerHTML = selectedFiles.map((file, index) => `
+                <div class="file-item">
+                    <span class="file-name">${file.name} (${(file.size / 1024).toFixed(2)} KB)</span>
+                    <span class="file-remove" onclick="removeFile(${index})">×</span>
+                </div>
+            `).join('');
+
+            importBtn.disabled = false;
+        }
+
+        async function importFiles() {
+            if (selectedFiles.length === 0) return;
+
+            const formData = new FormData();
+            selectedFiles.forEach(file => {
+                formData.append('files', file);
+            });
+
+            await performImport(formData);
+        }
+
+        async function importDirectory() {
+            if (!confirm('确定要导入数据目录下的所有文件吗？')) {
+                return;
+            }
+
+            showProgress();
+
+            try {
+                const response = await fetch('/api/import/directory', {
+                    method: 'POST'
+                });
+
+                const data = await response.json();
+                hideProgress();
+                showResult(data.success, data.message, data);
+
+            } catch (error) {
+                hideProgress();
+                showResult(false, '导入失败: ' + error.message);
+            }
+        }
+
+        async function performImport(formData) {
+            showProgress();
+
+            try {
+                const response = await fetch('/api/import/files', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+                hideProgress();
+                showResult(data.success, data.message, data);
+
+                if (data.success) {
+                    selectedFiles = [];
+                    updateFileList();
+                    fileInput.value = '';
+                }
+
+            } catch (error) {
+                hideProgress();
+                showResult(false, '导入失败: ' + error.message);
+            }
+        }
+
+        function showProgress() {
+            document.getElementById('progress').style.display = 'block';
+            document.getElementById('progressFill').style.width = '100%';
+            document.getElementById('progressFill').textContent = '处理中...';
+        }
+
+        function hideProgress() {
+            document.getElementById('progress').style.display = 'none';
+        }
+
+        function showResult(success, message, data = null) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.className = 'result ' + (success ? 'success' : 'error');
+
+            let html = `<strong>${success ? '✅ 成功' : '❌ 失败'}</strong><br>${message}`;
+
+            if (data && data.success) {
+                html += `<br><br>`;
+                if (data.total_files) html += `<strong>文件数:</strong> ${data.total_files}<br>`;
+                if (data.total_chunks) html += `<strong>分块数:</strong> ${data.total_chunks}<br>`;
+                if (data.inserted_count) html += `<strong>插入记录:</strong> ${data.inserted_count}<br>`;
+                if (data.elapsed_time) html += `<strong>耗时:</strong> ${data.elapsed_time.toFixed(2)}秒`;
+            }
+
+            resultDiv.innerHTML = html;
+            resultDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

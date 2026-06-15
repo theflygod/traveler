@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能对话 - 旅游知识库</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .chat-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 1000px;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .chat-header h1 {
+            font-size: 1.5em;
+            margin-bottom: 5px;
+        }
+
+        .chat-header p {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background: #f9f9f9;
+        }
+
+        .message {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .message.user {
+            flex-direction: row-reverse;
+        }
+
+        .message-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2em;
+            margin: 0 10px;
+            flex-shrink: 0;
+        }
+
+        .message.user .message-avatar {
+            background: #4CAF50;
+        }
+
+        .message-content {
+            max-width: 70%;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .message.user .message-content {
+            background: #667eea;
+            color: white;
+        }
+
+        .message-text {
+            line-height: 1.6;
+        }
+
+        .message-time {
+            font-size: 0.8em;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        .message.user .message-time {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .sources {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            font-size: 0.85em;
+        }
+
+        .message.user .sources {
+            border-top-color: rgba(255,255,255,0.3);
+        }
+
+        .source-item {
+            margin: 5px 0;
+            opacity: 0.8;
+        }
+
+        .chat-input-area {
+            padding: 20px;
+            background: white;
+            border-radius: 0 0 20px 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .input-wrapper {
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            font-size: 1em;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .chat-input:focus {
+            border-color: #667eea;
+        }
+
+        .send-btn {
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+
+        .send-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .send-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .typing-indicator {
+            display: none;
+            padding: 15px;
+            color: #999;
+        }
+
+        .welcome-message {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+        }
+
+        .welcome-message h2 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .quick-questions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .quick-question {
+            background: white;
+            padding: 10px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid #eee;
+        }
+
+        .quick-question:hover {
+            border-color: #667eea;
+            background: #f9f9ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h1>💬 旅游智能助手</h1>
+            <p id="sessionId">会话ID: 加载中...</p>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+            <div class="welcome-message">
+                <h2>欢迎使用旅游知识库！</h2>
+                <p>我可以帮您查询景点、规划行程、提供实用信息</p>
+                <div class="quick-questions">
+                    <div class="quick-question" onclick="askQuestion('三亚有哪些必去景点？')">
+                        📍 三亚有哪些必去景点？
+                    </div>
+                    <div class="quick-question" onclick="askQuestion('帮我规划一个三亚3日游行程')">
+                        🗺️ 帮我规划一个三亚3日游行程
+                    </div>
+                    <div class="quick-question" onclick="askQuestion('天涯海角门票多少钱？')">
+                        🎫 天涯海角门票多少钱？
+                    </div>
+                    <div class="quick-question" onclick="askQuestion('带老人孩子适合去哪里玩？')">
+                        👨‍👩‍👧 带老人孩子适合去哪里玩？
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="typing-indicator" id="typingIndicator">
+            🤖 正在思考...
+        </div>
+
+        <div class="chat-input-area">
+            <div class="input-wrapper">
+                <input type="text" class="chat-input" id="chatInput"
+                       placeholder="输入您的问题..."
+                       onkeypress="handleKeyPress(event)">
+                <button class="send-btn" id="sendBtn" onclick="sendMessage()">发送</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let sessionId = localStorage.getItem('sessionId') || '';
+
+        window.onload = function() {
+            if (!sessionId) {
+                sessionId = generateSessionId();
+                localStorage.setItem('sessionId', sessionId);
+            }
+            document.getElementById('sessionId').textContent = '会话ID: ' + sessionId.substring(0, 8) + '...';
+        };
+
+        function generateSessionId() {
+            return 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        }
+
+        function askQuestion(question) {
+            document.getElementById('chatInput').value = question;
+            sendMessage();
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+
+            if (!message) return;
+
+            addMessage(message, 'user');
+            input.value = '';
+
+            showTyping();
+
+            try {
+                const response = await fetch('/api/query', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        query: message,
+                        session_id: sessionId
+                    })
+                });
+
+                const data = await response.json();
+                hideTyping();
+
+                if (data.success) {
+                    sessionId = data.session_id;
+                    localStorage.setItem('sessionId', sessionId);
+
+                    addMessage(data.answer, 'assistant', data.sources);
+                } else {
+                    addMessage('抱歉，出现错误，请稍后重试。', 'assistant');
+                }
+
+            } catch (error) {
+                hideTyping();
+                addMessage('网络错误，请检查连接。', 'assistant');
+            }
+        }
+
+        function addMessage(text, sender, sources = null) {
+            const messagesContainer = document.getElementById('chatMessages');
+
+            const welcomeMessage = messagesContainer.querySelector('.welcome-message');
+            if (welcomeMessage) {
+                welcomeMessage.remove();
+            }
+
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message ' + sender;
+
+            const avatar = document.createElement('div');
+            avatar.className = 'message-avatar';
+            avatar.textContent = sender === 'user' ? '👤' : '🤖';
+
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'message-content';
+
+            const textDiv = document.createElement('div');
+            textDiv.className = 'message-text';
+            textDiv.textContent = text;
+
+            const timeDiv = document.createElement('div');
+            timeDiv.className = 'message-time';
+            timeDiv.textContent = new Date().toLocaleTimeString('zh-CN', {hour: '2-digit', minute:'2-digit'});
+
+            contentDiv.appendChild(textDiv);
+            contentDiv.appendChild(timeDiv);
+
+            if (sources && sources.length > 0) {
+                const sourcesDiv = document.createElement('div');
+                sourcesDiv.className = 'sources';
+                sourcesDiv.innerHTML = '<strong>信息来源:</strong>';
+
+                sources.forEach(source => {
+                    const sourceItem = document.createElement('div');
+                    sourceItem.className = 'source-item';
+                    sourceItem.textContent = `• ${source.title || source.city} (${(source.score * 100).toFixed(1)}%)`;
+                    sourcesDiv.appendChild(sourceItem);
+                });
+
+                contentDiv.appendChild(sourcesDiv);
+            }
+
+            messageDiv.appendChild(avatar);
+            messageDiv.appendChild(contentDiv);
+
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function showTyping() {
+            document.getElementById('typingIndicator').style.display = 'block';
+            document.getElementById('sendBtn').disabled = true;
+        }
+
+        function hideTyping() {
+            document.getElementById('typingIndicator').style.display = 'none';
+            document.getElementById('sendBtn').disabled = false;
+        }
+    </script>
+</body>
+</html>
