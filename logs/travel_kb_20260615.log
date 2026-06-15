@@ -1,0 +1,48 @@
+2026-06-15 08:47:00 - travel_kb - INFO - 旅游知识库系统启动
+2026-06-15 08:47:13 - travel_kb.session_manager - INFO - 会话管理器初始化完成
+2026-06-15 08:47:13 - travel_kb.history_store - INFO - 历史记录存储器初始化完成: C:\code\project\python\travel\data\history
+2026-06-15 08:47:14 - travel_kb.milvus_client - INFO - 成功连接到Milvus: http://192.168.10.150:19530
+2026-06-15 08:47:14 - travel_kb.milvus_client - INFO - 集合已存在: md_chunks
+2026-06-15 08:47:14 - travel_kb.llm_client - INFO - LLM客户端初始化完成: model=qwen-flash
+2026-06-15 08:47:14 - travel_kb.session_manager - INFO - 创建新会话: session_id=ea12445d...
+2026-06-15 08:47:14 - travel_kb - INFO - 创建会话: ea12445d...
+2026-06-15 08:48:15 - travel_kb.milvus_client - INFO - 成功插入 306 条记录
+2026-06-15 08:51:49 - travel_kb - INFO - 用户中断退出
+2026-06-15 08:51:54 - travel_kb - INFO - 旅游知识库系统启动
+2026-06-15 08:52:01 - travel_kb.session_manager - INFO - 会话管理器初始化完成
+2026-06-15 08:52:01 - travel_kb.history_store - INFO - 历史记录存储器初始化完成: C:\code\project\python\travel\data\history
+2026-06-15 08:52:01 - travel_kb.milvus_client - INFO - 成功连接到Milvus: http://192.168.10.150:19530
+2026-06-15 08:52:01 - travel_kb.milvus_client - INFO - 集合已存在: md_chunks
+2026-06-15 08:52:01 - travel_kb.llm_client - INFO - LLM客户端初始化完成: model=qwen-flash
+2026-06-15 08:52:01 - travel_kb.session_manager - INFO - 创建新会话: session_id=44d15c29...
+2026-06-15 08:52:01 - travel_kb - INFO - 创建会话: 44d15c29...
+2026-06-15 08:52:35 - travel_kb.milvus_client - INFO - 成功插入 306 条记录
+2026-06-15 09:08:23 - travel_kb - INFO - 用户中断退出
+2026-06-15 09:08:24 - travel_kb - INFO - 旅游知识库系统启动
+2026-06-15 09:08:31 - travel_kb.session_manager - INFO - 会话管理器初始化完成
+2026-06-15 09:08:31 - travel_kb.history_store - INFO - 历史记录存储器初始化完成: C:\code\project\python\travel\data\history
+2026-06-15 09:08:32 - travel_kb.milvus_client - INFO - 成功连接到Milvus: http://192.168.10.150:19530
+2026-06-15 09:08:32 - travel_kb.milvus_client - INFO - 集合已存在: md_chunks
+2026-06-15 09:08:32 - travel_kb.llm_client - INFO - LLM客户端初始化完成: model=qwen-flash
+2026-06-15 09:08:32 - travel_kb.session_manager - INFO - 创建新会话: session_id=396ca6db...
+2026-06-15 09:08:32 - travel_kb - INFO - 创建会话: 396ca6db...
+2026-06-15 09:08:43 - travel_kb.intent_classifier - INFO - 意图识别成功: query='clear_db', intent=知识问答
+2026-06-15 09:08:46 - travel_kb.milvus_client - INFO - 向量搜索返回 10 条结果
+2026-06-15 09:08:46 - travel_kb.milvus_client - INFO - 向量搜索返回 10 条结果
+2026-06-15 09:08:46 - travel_kb.hybrid_search - INFO - 混合检索完成: query='clear_db', 返回5条结果
+2026-06-15 09:09:08 - travel_kb.intent_classifier - INFO - 意图识别成功: query='clear_db', intent=知识问答
+2026-06-15 09:09:08 - travel_kb.milvus_client - INFO - 向量搜索返回 10 条结果
+2026-06-15 09:09:08 - travel_kb.milvus_client - INFO - 向量搜索返回 10 条结果
+2026-06-15 09:09:08 - travel_kb.hybrid_search - INFO - 混合检索完成: query='clear_db', 返回5条结果
+2026-06-15 09:09:54 - travel_kb.milvus_client - INFO - 成功插入 306 条记录
+2026-06-15 09:16:41 - travel_kb - INFO - 用户中断退出
+2026-06-15 09:33:34 - travel_kb - INFO - 旅游知识库系统启动
+2026-06-15 09:33:41 - travel_kb.session_manager - INFO - 会话管理器初始化完成
+2026-06-15 09:33:41 - travel_kb.history_store - INFO - 历史记录存储器初始化完成: C:\code\project\python\travel\data\history
+2026-06-15 09:33:41 - travel_kb.milvus_client - INFO - 成功连接到Milvus: http://192.168.10.150:19530
+2026-06-15 09:33:41 - travel_kb.milvus_client - INFO - 集合已存在: md_chunks
+2026-06-15 09:33:41 - travel_kb.llm_client - INFO - LLM客户端初始化完成: model=qwen-flash
+2026-06-15 09:33:41 - travel_kb.session_manager - INFO - 创建新会话: session_id=24f87a99...
+2026-06-15 09:33:41 - travel_kb - INFO - 创建会话: 24f87a99...
+2026-06-15 09:34:05 - travel_kb.milvus_client - INFO - 成功插入 306 条记录
+2026-06-15 10:41:40 - travel_kb - INFO - 用户中断退出

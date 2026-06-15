@@ -1,0 +1,327 @@
+2026-06-13 16:58:00 - travel_kb.test - INFO - 这是一条测试日志
+2026-06-13 16:58:01 - travel_kb - ERROR - 向量化服务测试失败: 
+Traceback (most recent call last):
+  File "C:\code\project\python\travel\tests\test_modules.py", line 255, in test_embedding_service
+    assert len(vector) == embedding_service.get_dimension()
+AssertionError
+2026-06-13 16:58:02 - travel_kb.milvus_client - INFO - 成功连接到Milvus: http://192.168.10.150:19530
+2026-06-13 16:58:02 - travel_kb.milvus_client - INFO - 创建新集合: md_chunks
+2026-06-13 16:58:02 - travel_kb - ERROR - Milvus客户端测试失败: <MilvusException: (code=1, message=Unexpected error, message=<GrpcHandler.create_index() got multiple values for argument 'params'>)>
+Traceback (most recent call last):
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 518, in handler
+    return func(*args, **kwargs)
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 565, in handler
+    return func(self, *args, **kwargs)
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 458, in handler
+    raise e from e
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 419, in handler
+    return func(*args, **kwargs)
+TypeError: GrpcHandler.create_index() got multiple values for argument 'params'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\code\project\python\travel\tests\test_modules.py", line 272, in test_milvus_client
+    milvus_client = MilvusClient()
+  File "C:\code\project\python\travel\storage\milvus_client.py", line 45, in __init__
+    self.collection = self._get_or_create_collection()
+  File "C:\code\project\python\travel\storage\milvus_client.py", line 66, in _get_or_create_collection
+    collection.create_index(
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 202, in wrapper
+    return func(*args, **kwargs)
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\orm\collection.py", line 1454, in create_index
+    return conn.create_index(
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 540, in handler
+    raise MilvusException(message=f"Unexpected error, message=<{e!s}>") from e
+pymilvus.exceptions.MilvusException: <MilvusException: (code=1, message=Unexpected error, message=<GrpcHandler.create_index() got multiple values for argument 'params'>)>
+2026-06-13 16:58:02 - travel_kb.intent_classifier - INFO - 意图识别成功: query='三亚有哪些好玩的景点？', intent=景点介绍
+2026-06-13 16:58:03 - travel_kb.intent_classifier - INFO - 意图识别成功: query='帮我规划一个三亚3日游行程', intent=线路检索
+2026-06-13 16:58:04 - travel_kb.intent_classifier - INFO - 意图识别成功: query='天涯海角的门票多少钱？', intent=实用信息
+2026-06-13 16:58:05 - travel_kb.intent_classifier - INFO - 意图识别成功: query='去三亚旅游需要注意什么？', intent=知识问答
+2026-06-13 16:58:05 - travel_kb.milvus_client - INFO - 成功连接到Milvus: http://192.168.10.150:19530
+2026-06-13 16:58:05 - travel_kb.milvus_client - INFO - 集合已存在: md_chunks
+2026-06-13 16:58:05 - travel_kb - ERROR - 向量检索测试失败: <MilvusException: (code=700, message=index not found[collection=md_chunks])>
+Traceback (most recent call last):
+  File "C:\code\project\python\travel\tests\test_modules.py", line 337, in test_vector_search
+    vector_search = VectorSearch()
+  File "C:\code\project\python\travel\retrieval\vector_search.py", line 19, in __init__
+    self.milvus_client = MilvusClient()
+  File "C:\code\project\python\travel\storage\milvus_client.py", line 45, in __init__
+    self.collection = self._get_or_create_collection()
+  File "C:\code\project\python\travel\storage\milvus_client.py", line 58, in _get_or_create_collection
+    collection.load()
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 202, in wrapper
+    return func(*args, **kwargs)
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\orm\collection.py", line 477, in load
+    conn.load_collection(
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 521, in handler
+    raise e from e
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 518, in handler
+    return func(*args, **kwargs)
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 565, in handler
+    return func(self, *args, **kwargs)
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 456, in handler
+    raise e from e
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 419, in handler
+    return func(*args, **kwargs)
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\client\grpc_handler.py", line 1737, in load_collection
+    check_status(response)
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\client\utils.py", line 77, in check_status
+    raise MilvusException(status.code, status.reason, status.error_code)
+pymilvus.exceptions.MilvusException: <MilvusException: (code=700, message=index not found[collection=md_chunks])>
+2026-06-13 16:58:05 - travel_kb.milvus_client - INFO - 成功连接到Milvus: http://192.168.10.150:19530
+2026-06-13 16:58:05 - travel_kb.milvus_client - INFO - 集合已存在: md_chunks
+2026-06-13 16:58:05 - travel_kb - ERROR - 混合检索测试失败: <MilvusException: (code=700, message=index not found[collection=md_chunks])>
+Traceback (most recent call last):
+  File "C:\code\project\python\travel\tests\test_modules.py", line 374, in test_hybrid_search
+    hybrid_search = HybridSearch()
+  File "C:\code\project\python\travel\retrieval\hybrid_search.py", line 29, in __init__
+    self.milvus_client = MilvusClient()
+  File "C:\code\project\python\travel\storage\milvus_client.py", line 45, in __init__
+    self.collection = self._get_or_create_collection()
+  File "C:\code\project\python\travel\storage\milvus_client.py", line 58, in _get_or_create_collection
+    collection.load()
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 202, in wrapper
+    return func(*args, **kwargs)
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\orm\collection.py", line 477, in load
+    conn.load_collection(
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 521, in handler
+    raise e from e
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 518, in handler
+    return func(*args, **kwargs)
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 565, in handler
+    return func(self, *args, **kwargs)
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 456, in handler
+    raise e from e
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 419, in handler
+    return func(*args, **kwargs)
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\client\grpc_handler.py", line 1737, in load_collection
+    check_status(response)
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\client\utils.py", line 77, in check_status
+    raise MilvusException(status.code, status.reason, status.error_code)
+pymilvus.exceptions.MilvusException: <MilvusException: (code=700, message=index not found[collection=md_chunks])>
+2026-06-13 16:58:05 - travel_kb.llm_client - INFO - LLM客户端初始化完成: model=qwen-flash
+2026-06-13 16:58:05 - travel_kb.milvus_client - INFO - 成功连接到Milvus: http://192.168.10.150:19530
+2026-06-13 16:58:05 - travel_kb.milvus_client - INFO - 集合已存在: md_chunks
+2026-06-13 16:58:05 - travel_kb - ERROR - 答案生成器测试失败: <MilvusException: (code=700, message=index not found[collection=md_chunks])>
+Traceback (most recent call last):
+  File "C:\code\project\python\travel\tests\test_modules.py", line 411, in test_answer_generator
+    vector_search = VectorSearch()
+  File "C:\code\project\python\travel\retrieval\vector_search.py", line 19, in __init__
+    self.milvus_client = MilvusClient()
+  File "C:\code\project\python\travel\storage\milvus_client.py", line 45, in __init__
+    self.collection = self._get_or_create_collection()
+  File "C:\code\project\python\travel\storage\milvus_client.py", line 58, in _get_or_create_collection
+    collection.load()
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 202, in wrapper
+    return func(*args, **kwargs)
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\orm\collection.py", line 477, in load
+    conn.load_collection(
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 521, in handler
+    raise e from e
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 518, in handler
+    return func(*args, **kwargs)
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 565, in handler
+    return func(self, *args, **kwargs)
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 456, in handler
+    raise e from e
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 419, in handler
+    return func(*args, **kwargs)
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\client\grpc_handler.py", line 1737, in load_collection
+    check_status(response)
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\client\utils.py", line 77, in check_status
+    raise MilvusException(status.code, status.reason, status.error_code)
+pymilvus.exceptions.MilvusException: <MilvusException: (code=700, message=index not found[collection=md_chunks])>
+2026-06-13 16:58:05 - travel_kb.session_manager - INFO - 会话管理器初始化完成
+2026-06-13 16:58:05 - travel_kb.session_manager - INFO - 创建新会话: session_id=f2fbf472...
+2026-06-13 16:58:05 - travel_kb.history_store - INFO - 历史记录存储器初始化完成: C:\code\project\python\travel\data\history
+2026-06-13 16:58:05 - travel_kb.history_store - INFO - 删除历史记录: test_ses...
+2026-06-13 17:02:17 - travel_kb.test - INFO - 这是一条测试日志
+2026-06-13 17:02:19 - travel_kb.milvus_client - INFO - 成功连接到Milvus: http://192.168.10.150:19530
+2026-06-13 17:02:19 - travel_kb.milvus_client - INFO - 创建新集合: md_chunks
+2026-06-13 17:02:19 - travel_kb - ERROR - Milvus客户端测试失败: <MilvusException: (code=1, message=Unexpected error, message=<GrpcHandler.create_index() got multiple values for argument 'params'>)>
+Traceback (most recent call last):
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 518, in handler
+    return func(*args, **kwargs)
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 565, in handler
+    return func(self, *args, **kwargs)
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 458, in handler
+    raise e from e
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 419, in handler
+    return func(*args, **kwargs)
+TypeError: GrpcHandler.create_index() got multiple values for argument 'params'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\code\project\python\travel\tests\test_modules.py", line 272, in test_milvus_client
+    milvus_client = MilvusClient()
+  File "C:\code\project\python\travel\storage\milvus_client.py", line 45, in __init__
+    self.collection = self._get_or_create_collection()
+  File "C:\code\project\python\travel\storage\milvus_client.py", line 74, in _get_or_create_collection
+    collection.create_index(
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 202, in wrapper
+    return func(*args, **kwargs)
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\orm\collection.py", line 1454, in create_index
+    return conn.create_index(
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 540, in handler
+    raise MilvusException(message=f"Unexpected error, message=<{e!s}>") from e
+pymilvus.exceptions.MilvusException: <MilvusException: (code=1, message=Unexpected error, message=<GrpcHandler.create_index() got multiple values for argument 'params'>)>
+2026-06-13 17:02:19 - travel_kb.intent_classifier - INFO - 意图识别成功: query='三亚有哪些好玩的景点？', intent=景点介绍
+2026-06-13 17:02:21 - travel_kb.intent_classifier - INFO - 意图识别成功: query='帮我规划一个三亚3日游行程', intent=线路检索
+2026-06-13 17:02:21 - travel_kb.intent_classifier - INFO - 意图识别成功: query='天涯海角的门票多少钱？', intent=实用信息
+2026-06-13 17:02:22 - travel_kb.intent_classifier - INFO - 意图识别成功: query='去三亚旅游需要注意什么？', intent=知识问答
+2026-06-13 17:02:22 - travel_kb.milvus_client - INFO - 成功连接到Milvus: http://192.168.10.150:19530
+2026-06-13 17:02:22 - travel_kb.milvus_client - INFO - 集合已存在: md_chunks
+2026-06-13 17:02:22 - travel_kb.milvus_client - WARNING - 集合加载失败，尝试重建索引: <MilvusException: (code=700, message=index not found[collection=md_chunks])>
+2026-06-13 17:02:22 - travel_kb.milvus_client - ERROR - 重建索引失败: <MilvusException: (code=1, message=Unexpected error, message=<GrpcHandler.create_index() got multiple values for argument 'params'>)>
+2026-06-13 17:02:22 - travel_kb - ERROR - 向量检索测试失败: <MilvusException: (code=1, message=Unexpected error, message=<GrpcHandler.create_index() got multiple values for argument 'params'>)>
+Traceback (most recent call last):
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 518, in handler
+    return func(*args, **kwargs)
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 565, in handler
+    return func(self, *args, **kwargs)
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 458, in handler
+    raise e from e
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 419, in handler
+    return func(*args, **kwargs)
+TypeError: GrpcHandler.create_index() got multiple values for argument 'params'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\code\project\python\travel\tests\test_modules.py", line 337, in test_vector_search
+    vector_search = VectorSearch()
+  File "C:\code\project\python\travel\retrieval\vector_search.py", line 19, in __init__
+    self.milvus_client = MilvusClient()
+  File "C:\code\project\python\travel\storage\milvus_client.py", line 45, in __init__
+    self.collection = self._get_or_create_collection()
+  File "C:\code\project\python\travel\storage\milvus_client.py", line 63, in _get_or_create_collection
+    self._rebuild_index(collection)
+  File "C:\code\project\python\travel\storage\milvus_client.py", line 100, in _rebuild_index
+    collection.create_index(
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 202, in wrapper
+    return func(*args, **kwargs)
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\orm\collection.py", line 1454, in create_index
+    return conn.create_index(
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 540, in handler
+    raise MilvusException(message=f"Unexpected error, message=<{e!s}>") from e
+pymilvus.exceptions.MilvusException: <MilvusException: (code=1, message=Unexpected error, message=<GrpcHandler.create_index() got multiple values for argument 'params'>)>
+2026-06-13 17:02:22 - travel_kb.milvus_client - INFO - 成功连接到Milvus: http://192.168.10.150:19530
+2026-06-13 17:02:22 - travel_kb.milvus_client - INFO - 集合已存在: md_chunks
+2026-06-13 17:02:22 - travel_kb.milvus_client - WARNING - 集合加载失败，尝试重建索引: <MilvusException: (code=700, message=index not found[collection=md_chunks])>
+2026-06-13 17:02:22 - travel_kb.milvus_client - ERROR - 重建索引失败: <MilvusException: (code=1, message=Unexpected error, message=<GrpcHandler.create_index() got multiple values for argument 'params'>)>
+2026-06-13 17:02:22 - travel_kb - ERROR - 混合检索测试失败: <MilvusException: (code=1, message=Unexpected error, message=<GrpcHandler.create_index() got multiple values for argument 'params'>)>
+Traceback (most recent call last):
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 518, in handler
+    return func(*args, **kwargs)
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 565, in handler
+    return func(self, *args, **kwargs)
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 458, in handler
+    raise e from e
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 419, in handler
+    return func(*args, **kwargs)
+TypeError: GrpcHandler.create_index() got multiple values for argument 'params'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\code\project\python\travel\tests\test_modules.py", line 374, in test_hybrid_search
+    hybrid_search = HybridSearch()
+  File "C:\code\project\python\travel\retrieval\hybrid_search.py", line 29, in __init__
+    self.milvus_client = MilvusClient()
+  File "C:\code\project\python\travel\storage\milvus_client.py", line 45, in __init__
+    self.collection = self._get_or_create_collection()
+  File "C:\code\project\python\travel\storage\milvus_client.py", line 63, in _get_or_create_collection
+    self._rebuild_index(collection)
+  File "C:\code\project\python\travel\storage\milvus_client.py", line 100, in _rebuild_index
+    collection.create_index(
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 202, in wrapper
+    return func(*args, **kwargs)
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\orm\collection.py", line 1454, in create_index
+    return conn.create_index(
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 540, in handler
+    raise MilvusException(message=f"Unexpected error, message=<{e!s}>") from e
+pymilvus.exceptions.MilvusException: <MilvusException: (code=1, message=Unexpected error, message=<GrpcHandler.create_index() got multiple values for argument 'params'>)>
+2026-06-13 17:02:22 - travel_kb.llm_client - INFO - LLM客户端初始化完成: model=qwen-flash
+2026-06-13 17:02:22 - travel_kb.milvus_client - INFO - 成功连接到Milvus: http://192.168.10.150:19530
+2026-06-13 17:02:22 - travel_kb.milvus_client - INFO - 集合已存在: md_chunks
+2026-06-13 17:02:22 - travel_kb.milvus_client - WARNING - 集合加载失败，尝试重建索引: <MilvusException: (code=700, message=index not found[collection=md_chunks])>
+2026-06-13 17:02:22 - travel_kb.milvus_client - ERROR - 重建索引失败: <MilvusException: (code=1, message=Unexpected error, message=<GrpcHandler.create_index() got multiple values for argument 'params'>)>
+2026-06-13 17:02:22 - travel_kb - ERROR - 答案生成器测试失败: <MilvusException: (code=1, message=Unexpected error, message=<GrpcHandler.create_index() got multiple values for argument 'params'>)>
+Traceback (most recent call last):
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 518, in handler
+    return func(*args, **kwargs)
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 565, in handler
+    return func(self, *args, **kwargs)
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 458, in handler
+    raise e from e
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 419, in handler
+    return func(*args, **kwargs)
+TypeError: GrpcHandler.create_index() got multiple values for argument 'params'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\code\project\python\travel\tests\test_modules.py", line 411, in test_answer_generator
+    vector_search = VectorSearch()
+  File "C:\code\project\python\travel\retrieval\vector_search.py", line 19, in __init__
+    self.milvus_client = MilvusClient()
+  File "C:\code\project\python\travel\storage\milvus_client.py", line 45, in __init__
+    self.collection = self._get_or_create_collection()
+  File "C:\code\project\python\travel\storage\milvus_client.py", line 63, in _get_or_create_collection
+    self._rebuild_index(collection)
+  File "C:\code\project\python\travel\storage\milvus_client.py", line 100, in _rebuild_index
+    collection.create_index(
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 202, in wrapper
+    return func(*args, **kwargs)
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\orm\collection.py", line 1454, in create_index
+    return conn.create_index(
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 540, in handler
+    raise MilvusException(message=f"Unexpected error, message=<{e!s}>") from e
+pymilvus.exceptions.MilvusException: <MilvusException: (code=1, message=Unexpected error, message=<GrpcHandler.create_index() got multiple values for argument 'params'>)>
+2026-06-13 17:02:22 - travel_kb.session_manager - INFO - 会话管理器初始化完成
+2026-06-13 17:02:22 - travel_kb.session_manager - INFO - 创建新会话: session_id=6eee1d52...
+2026-06-13 17:02:22 - travel_kb.history_store - INFO - 历史记录存储器初始化完成: C:\code\project\python\travel\data\history
+2026-06-13 17:02:22 - travel_kb.history_store - INFO - 删除历史记录: test_ses...
+2026-06-13 17:06:09 - travel_kb.test - INFO - 这是一条测试日志
+2026-06-13 17:06:11 - travel_kb.milvus_client - INFO - 成功连接到Milvus: http://192.168.10.150:19530
+2026-06-13 17:06:11 - travel_kb.milvus_client - INFO - 集合已存在: md_chunks
+2026-06-13 17:06:11 - travel_kb.milvus_client - WARNING - 集合加载失败，尝试重建索引: <MilvusException: (code=700, message=index not found[collection=md_chunks])>
+2026-06-13 17:06:11 - travel_kb.milvus_client - INFO - 索引创建成功
+2026-06-13 17:06:11 - travel_kb.milvus_client - INFO - 索引重建完成
+2026-06-13 17:06:14 - travel_kb.intent_classifier - INFO - 意图识别成功: query='三亚有哪些好玩的景点？', intent=景点介绍
+2026-06-13 17:06:14 - travel_kb.intent_classifier - INFO - 意图识别成功: query='帮我规划一个三亚3日游行程', intent=线路检索
+2026-06-13 17:06:15 - travel_kb.intent_classifier - INFO - 意图识别成功: query='天涯海角的门票多少钱？', intent=实用信息
+2026-06-13 17:06:16 - travel_kb.intent_classifier - INFO - 意图识别成功: query='去三亚旅游需要注意什么？', intent=知识问答
+2026-06-13 17:06:18 - travel_kb.milvus_client - INFO - 向量搜索返回 0 条结果
+2026-06-13 17:06:18 - travel_kb.vector_search - INFO - 向量检索完成: query='三亚有什么好玩的景点', 返回0条结果
+2026-06-13 17:06:19 - travel_kb.milvus_client - INFO - 向量搜索返回 0 条结果
+2026-06-13 17:06:19 - travel_kb.milvus_client - INFO - 向量搜索返回 0 条结果
+2026-06-13 17:06:19 - travel_kb.hybrid_search - INFO - 混合检索完成: query='三亚天涯海角门票价格', 返回0条结果
+2026-06-13 17:06:19 - travel_kb.llm_client - INFO - LLM客户端初始化完成: model=qwen-flash
+2026-06-13 17:06:19 - travel_kb.milvus_client - INFO - 向量搜索返回 0 条结果
+2026-06-13 17:06:19 - travel_kb.vector_search - INFO - 向量检索完成: query='三亚有哪些必去景点？', 返回0条结果
+2026-06-13 17:06:19 - travel_kb.session_manager - INFO - 会话管理器初始化完成
+2026-06-13 17:06:19 - travel_kb.session_manager - INFO - 创建新会话: session_id=83d55c73...
+2026-06-13 17:06:19 - travel_kb.history_store - INFO - 历史记录存储器初始化完成: C:\code\project\python\travel\data\history
+2026-06-13 17:06:19 - travel_kb.history_store - INFO - 删除历史记录: test_ses...
+2026-06-13 17:08:23 - travel_kb.test - INFO - 这是一条测试日志
+2026-06-13 17:08:24 - travel_kb.milvus_client - INFO - 成功连接到Milvus: http://192.168.10.150:19530
+2026-06-13 17:08:24 - travel_kb.milvus_client - INFO - 集合已存在: md_chunks
+2026-06-13 17:08:26 - travel_kb.intent_classifier - INFO - 意图识别成功: query='三亚有哪些好玩的景点？', intent=景点介绍
+2026-06-13 17:08:26 - travel_kb.intent_classifier - INFO - 意图识别成功: query='帮我规划一个三亚3日游行程', intent=线路检索
+2026-06-13 17:08:27 - travel_kb.intent_classifier - INFO - 意图识别成功: query='天涯海角的门票多少钱？', intent=实用信息
+2026-06-13 17:08:30 - travel_kb.intent_classifier - INFO - 意图识别成功: query='去三亚旅游需要注意什么？', intent=知识问答
+2026-06-13 17:08:30 - travel_kb.milvus_client - INFO - 向量搜索返回 0 条结果
+2026-06-13 17:08:30 - travel_kb.vector_search - INFO - 向量检索完成: query='三亚有什么好玩的景点', 返回0条结果
+2026-06-13 17:08:31 - travel_kb.milvus_client - INFO - 向量搜索返回 0 条结果
+2026-06-13 17:08:31 - travel_kb.milvus_client - INFO - 向量搜索返回 0 条结果
+2026-06-13 17:08:31 - travel_kb.hybrid_search - INFO - 混合检索完成: query='三亚天涯海角门票价格', 返回0条结果
+2026-06-13 17:08:31 - travel_kb.llm_client - INFO - LLM客户端初始化完成: model=qwen-flash
+2026-06-13 17:08:31 - travel_kb.milvus_client - INFO - 向量搜索返回 0 条结果
+2026-06-13 17:08:31 - travel_kb.vector_search - INFO - 向量检索完成: query='三亚有哪些必去景点？', 返回0条结果
+2026-06-13 17:08:31 - travel_kb.session_manager - INFO - 会话管理器初始化完成
+2026-06-13 17:08:31 - travel_kb.session_manager - INFO - 创建新会话: session_id=e9f6c978...
+2026-06-13 17:08:31 - travel_kb.history_store - INFO - 历史记录存储器初始化完成: C:\code\project\python\travel\data\history
+2026-06-13 17:08:31 - travel_kb.history_store - INFO - 删除历史记录: test_ses...

@@ -1,0 +1,56 @@
+{
+  "session_id": "f5ab718d-1864-46f0-8304-fdc2f705c209",
+  "messages": [
+    {
+      "role": "user",
+      "content": "三亚有哪些必去景点？",
+      "timestamp": "2026-06-14T17:12:05.780085",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "抱歉，我没有找到相关的旅游信息。您可以尝试换一种问法，或者询问其他城市、景点的信息。",
+      "timestamp": "2026-06-14T17:12:05.780085",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "帮我规划一个三亚3日游行程",
+      "timestamp": "2026-06-14T17:12:08.244548",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "抱歉，我没有找到相关的旅游信息。您可以尝试换一种问法，或者询问其他城市、景点的信息。",
+      "timestamp": "2026-06-14T17:12:08.244548",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "天涯海角门票多少钱？",
+      "timestamp": "2026-06-14T17:12:10.528046",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "抱歉，我没有找到相关的旅游信息。您可以尝试换一种问法，或者询问其他城市、景点的信息。",
+      "timestamp": "2026-06-14T17:12:10.528046",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "带老人孩子适合去哪里玩？",
+      "timestamp": "2026-06-14T17:12:12.253785",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "抱歉，我没有找到相关的旅游信息。您可以尝试换一种问法，或者询问其他城市、景点的信息。",
+      "timestamp": "2026-06-14T17:12:12.253785",
+      "metadata": {}
+    }
+  ],
+  "created_at": "2026-06-14T17:12:05.780085",
+  "updated_at": "2026-06-14T17:12:12.253785",
+  "message_count": 8
+}

@@ -1,0 +1,201 @@
+2026-06-14 16:33:07 - travel_kb - INFO - 旅游知识库系统启动
+2026-06-14 16:40:04 - travel_kb - INFO - 旅游知识库系统启动
+2026-06-14 16:40:30 - travel_kb - INFO - 旅游知识库系统启动
+2026-06-14 16:43:18 - travel_kb - INFO - 旅游知识库系统启动
+2026-06-14 16:43:23 - travel_kb.session_manager - INFO - 会话管理器初始化完成
+2026-06-14 16:43:23 - travel_kb.history_store - INFO - 历史记录存储器初始化完成: C:\code\project\python\travel\data\history
+2026-06-14 16:43:34 - travel_kb.milvus_client - ERROR - 连接Milvus失败: <MilvusException: (code=2, message=Fail connecting to server on 192.168.10.150:19530, illegal connection params or server unavailable)>
+2026-06-14 16:49:15 - travel_kb - INFO - 旅游知识库系统启动
+2026-06-14 16:53:51 - travel_kb - INFO - 旅游知识库系统启动
+2026-06-14 16:54:14 - travel_kb.milvus_client - ERROR - 连接Milvus失败: <MilvusException: (code=2, message=Fail connecting to server on 192.168.10.150:19530, illegal connection params or server unavailable)>
+2026-06-14 16:54:14 - travel_kb - ERROR - Web服务启动失败: <MilvusException: (code=2, message=Fail connecting to server on 192.168.10.150:19530, illegal connection params or server unavailable)>
+Traceback (most recent call last):
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\client\grpc_handler.py", line 236, in _wait_for_channel_ready
+    grpc.channel_ready_future(self._channel).result(timeout=effective_timeout)
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\grpc\_utilities.py", line 160, in result
+    self._block(timeout)
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\grpc\_utilities.py", line 105, in _block
+    raise grpc.FutureTimeoutError()
+grpc.FutureTimeoutError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\code\project\python\travel\main.py", line 132, in start_web
+    uvicorn.run(
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\uvicorn\main.py", line 609, in run
+    config.load_app()
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\uvicorn\config.py", line 415, in load_app
+    return import_from_string(self.app)
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\uvicorn\importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+  File "C:\code\environment\conda\envs\knowledge\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "C:\code\project\python\travel\api\main.py", line 34, in <module>
+    travel_graph = TravelKnowledgeGraph()
+  File "C:\code\project\python\travel\workflow\graph.py", line 36, in __init__
+    self.hybrid_search = HybridSearch()
+  File "C:\code\project\python\travel\retrieval\hybrid_search.py", line 29, in __init__
+    self.milvus_client = MilvusClient()
+  File "C:\code\project\python\travel\storage\milvus_client.py", line 36, in __init__
+    connections.connect(
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 202, in wrapper
+    return func(*args, **kwargs)
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\orm\connections.py", line 440, in connect
+    connect_milvus(**kwargs, user=user, password=password, token=token, db_name=db_name)
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\orm\connections.py", line 386, in connect_milvus
+    gh._wait_for_channel_ready(timeout=timeout)
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\client\grpc_handler.py", line 240, in _wait_for_channel_ready
+    raise MilvusException(
+pymilvus.exceptions.MilvusException: <MilvusException: (code=2, message=Fail connecting to server on 192.168.10.150:19530, illegal connection params or server unavailable)>
+2026-06-14 16:54:42 - travel_kb.milvus_client - ERROR - 连接Milvus失败: <MilvusException: (code=2, message=Fail connecting to server on 192.168.10.150:19530, illegal connection params or server unavailable)>
+2026-06-14 16:58:49 - travel_kb - INFO - 旅游知识库系统启动
+2026-06-14 16:59:08 - travel_kb.milvus_client - ERROR - 连接Milvus失败: <MilvusException: (code=2, message=Fail connecting to server on 192.168.10.150:19530, illegal connection params or server unavailable)>
+2026-06-14 16:59:08 - travel_kb - ERROR - Web服务启动失败: <MilvusException: (code=2, message=Fail connecting to server on 192.168.10.150:19530, illegal connection params or server unavailable)>
+Traceback (most recent call last):
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\client\grpc_handler.py", line 236, in _wait_for_channel_ready
+    grpc.channel_ready_future(self._channel).result(timeout=effective_timeout)
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\grpc\_utilities.py", line 160, in result
+    self._block(timeout)
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\grpc\_utilities.py", line 105, in _block
+    raise grpc.FutureTimeoutError()
+grpc.FutureTimeoutError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\code\project\python\travel\main.py", line 132, in start_web
+    uvicorn.run(
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\uvicorn\main.py", line 609, in run
+    config.load_app()
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\uvicorn\config.py", line 415, in load_app
+    return import_from_string(self.app)
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\uvicorn\importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+  File "C:\code\environment\conda\envs\knowledge\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "C:\code\project\python\travel\api\main.py", line 34, in <module>
+    travel_graph = TravelKnowledgeGraph()
+  File "C:\code\project\python\travel\workflow\graph.py", line 36, in __init__
+    self.hybrid_search = HybridSearch()
+  File "C:\code\project\python\travel\retrieval\hybrid_search.py", line 29, in __init__
+    self.milvus_client = MilvusClient()
+  File "C:\code\project\python\travel\storage\milvus_client.py", line 36, in __init__
+    connections.connect(
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\decorators.py", line 202, in wrapper
+    return func(*args, **kwargs)
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\orm\connections.py", line 440, in connect
+    connect_milvus(**kwargs, user=user, password=password, token=token, db_name=db_name)
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\orm\connections.py", line 386, in connect_milvus
+    gh._wait_for_channel_ready(timeout=timeout)
+  File "C:\code\environment\conda\envs\knowledge\lib\site-packages\pymilvus\client\grpc_handler.py", line 240, in _wait_for_channel_ready
+    raise MilvusException(
+pymilvus.exceptions.MilvusException: <MilvusException: (code=2, message=Fail connecting to server on 192.168.10.150:19530, illegal connection params or server unavailable)>
+2026-06-14 17:11:30 - travel_kb - INFO - 旅游知识库系统启动
+2026-06-14 17:11:39 - travel_kb.milvus_client - INFO - 成功连接到Milvus: http://192.168.10.150:19530
+2026-06-14 17:11:39 - travel_kb.milvus_client - INFO - 集合已存在: md_chunks
+2026-06-14 17:11:39 - travel_kb.llm_client - INFO - LLM客户端初始化完成: model=qwen-flash
+2026-06-14 17:11:39 - travel_kb.workflow - INFO - LangGraph工作流初始化完成
+2026-06-14 17:11:39 - travel_kb.session_manager - INFO - 会话管理器初始化完成
+2026-06-14 17:11:39 - travel_kb.history_store - INFO - 历史记录存储器初始化完成: C:\code\project\python\travel\data\history
+2026-06-14 17:11:46 - travel_kb.milvus_client - INFO - 成功连接到Milvus: http://192.168.10.150:19530
+2026-06-14 17:11:46 - travel_kb.milvus_client - INFO - 集合已存在: md_chunks
+2026-06-14 17:11:46 - travel_kb.llm_client - INFO - LLM客户端初始化完成: model=qwen-flash
+2026-06-14 17:11:46 - travel_kb.workflow - INFO - LangGraph工作流初始化完成
+2026-06-14 17:11:46 - travel_kb.session_manager - INFO - 会话管理器初始化完成
+2026-06-14 17:11:46 - travel_kb.history_store - INFO - 历史记录存储器初始化完成: C:\code\project\python\travel\data\history
+2026-06-14 17:11:58 - travel_kb.session_manager - INFO - 创建新会话: session_id=f5ab718d...
+2026-06-14 17:12:00 - travel_kb.workflow - INFO - 意图识别: 三亚有哪些必去景点？
+2026-06-14 17:12:03 - travel_kb.intent_classifier - INFO - 意图识别成功: query='三亚有哪些必去景点？', intent=景点介绍
+2026-06-14 17:12:03 - travel_kb.workflow - INFO - 知识检索: query=三亚有哪些必去景点？
+2026-06-14 17:12:05 - travel_kb.milvus_client - INFO - 向量搜索返回 0 条结果
+2026-06-14 17:12:05 - travel_kb.milvus_client - INFO - 向量搜索返回 0 条结果
+2026-06-14 17:12:05 - travel_kb.hybrid_search - INFO - 混合检索完成: query='三亚有哪些必去景点？', 返回0条结果
+2026-06-14 17:12:05 - travel_kb.workflow - INFO - 检索到 0 条结果
+2026-06-14 17:12:05 - travel_kb.workflow - INFO - 生成答案: 0条资料
+2026-06-14 17:12:05 - travel_kb.workflow - INFO - 工作流执行完成: intent=景点介绍, answer_len=42
+2026-06-14 17:12:07 - travel_kb.workflow - INFO - 意图识别: 帮我规划一个三亚3日游行程
+2026-06-14 17:12:08 - travel_kb.intent_classifier - INFO - 意图识别成功: query='帮我规划一个三亚3日游行程', intent=线路检索
+2026-06-14 17:12:08 - travel_kb.workflow - INFO - 知识检索: query=帮我规划一个三亚3日游行程
+2026-06-14 17:12:08 - travel_kb.milvus_client - INFO - 向量搜索返回 0 条结果
+2026-06-14 17:12:08 - travel_kb.milvus_client - INFO - 向量搜索返回 0 条结果
+2026-06-14 17:12:08 - travel_kb.hybrid_search - INFO - 混合检索完成: query='帮我规划一个三亚3日游行程', 返回0条结果
+2026-06-14 17:12:08 - travel_kb.workflow - INFO - 检索到 0 条结果
+2026-06-14 17:12:08 - travel_kb.workflow - INFO - 生成答案: 0条资料
+2026-06-14 17:12:08 - travel_kb.workflow - INFO - 工作流执行完成: intent=线路检索, answer_len=42
+2026-06-14 17:12:09 - travel_kb.workflow - INFO - 意图识别: 天涯海角门票多少钱？
+2026-06-14 17:12:10 - travel_kb.intent_classifier - INFO - 意图识别成功: query='天涯海角门票多少钱？', intent=实用信息
+2026-06-14 17:12:10 - travel_kb.workflow - INFO - 知识检索: query=天涯海角门票多少钱？
+2026-06-14 17:12:10 - travel_kb.milvus_client - INFO - 向量搜索返回 0 条结果
+2026-06-14 17:12:10 - travel_kb.milvus_client - INFO - 向量搜索返回 0 条结果
+2026-06-14 17:12:10 - travel_kb.hybrid_search - INFO - 混合检索完成: query='天涯海角门票多少钱？', 返回0条结果
+2026-06-14 17:12:10 - travel_kb.workflow - INFO - 检索到 0 条结果
+2026-06-14 17:12:10 - travel_kb.workflow - INFO - 生成答案: 0条资料
+2026-06-14 17:12:10 - travel_kb.workflow - INFO - 工作流执行完成: intent=实用信息, answer_len=42
+2026-06-14 17:12:11 - travel_kb.workflow - INFO - 意图识别: 带老人孩子适合去哪里玩？
+2026-06-14 17:12:12 - travel_kb.intent_classifier - INFO - 意图识别成功: query='带老人孩子适合去哪里玩？', intent=实用信息
+2026-06-14 17:12:12 - travel_kb.workflow - INFO - 知识检索: query=带老人孩子适合去哪里玩？
+2026-06-14 17:12:12 - travel_kb.milvus_client - INFO - 向量搜索返回 0 条结果
+2026-06-14 17:12:12 - travel_kb.milvus_client - INFO - 向量搜索返回 0 条结果
+2026-06-14 17:12:12 - travel_kb.hybrid_search - INFO - 混合检索完成: query='带老人孩子适合去哪里玩？', 返回0条结果
+2026-06-14 17:12:12 - travel_kb.workflow - INFO - 检索到 0 条结果
+2026-06-14 17:12:12 - travel_kb.workflow - INFO - 生成答案: 0条资料
+2026-06-14 17:12:12 - travel_kb.workflow - INFO - 工作流执行完成: intent=实用信息, answer_len=42
+2026-06-14 17:13:51 - travel_kb - INFO - 旅游知识库系统启动
+2026-06-14 17:13:58 - travel_kb.session_manager - INFO - 会话管理器初始化完成
+2026-06-14 17:13:58 - travel_kb.history_store - INFO - 历史记录存储器初始化完成: C:\code\project\python\travel\data\history
+2026-06-14 17:13:58 - travel_kb.milvus_client - INFO - 成功连接到Milvus: http://192.168.10.150:19530
+2026-06-14 17:13:58 - travel_kb.milvus_client - INFO - 集合已存在: md_chunks
+2026-06-14 17:13:58 - travel_kb.llm_client - INFO - LLM客户端初始化完成: model=qwen-flash
+2026-06-14 17:13:58 - travel_kb.session_manager - INFO - 创建新会话: session_id=11670155...
+2026-06-14 17:13:58 - travel_kb - INFO - 创建会话: 11670155...
+2026-06-14 17:14:19 - travel_kb.milvus_client - INFO - 成功插入 306 条记录
+2026-06-14 17:14:25 - travel_kb - INFO - 用户中断退出
+2026-06-14 17:14:27 - travel_kb - INFO - 旅游知识库系统启动
+2026-06-14 17:14:39 - travel_kb.milvus_client - INFO - 成功连接到Milvus: http://192.168.10.150:19530
+2026-06-14 17:14:39 - travel_kb.milvus_client - INFO - 集合已存在: md_chunks
+2026-06-14 17:14:39 - travel_kb.llm_client - INFO - LLM客户端初始化完成: model=qwen-flash
+2026-06-14 17:14:39 - travel_kb.workflow - INFO - LangGraph工作流初始化完成
+2026-06-14 17:14:39 - travel_kb.session_manager - INFO - 会话管理器初始化完成
+2026-06-14 17:14:39 - travel_kb.history_store - INFO - 历史记录存储器初始化完成: C:\code\project\python\travel\data\history
+2026-06-14 17:14:45 - travel_kb.milvus_client - INFO - 成功连接到Milvus: http://192.168.10.150:19530
+2026-06-14 17:14:45 - travel_kb.milvus_client - INFO - 集合已存在: md_chunks
+2026-06-14 17:14:45 - travel_kb.llm_client - INFO - LLM客户端初始化完成: model=qwen-flash
+2026-06-14 17:14:45 - travel_kb.workflow - INFO - LangGraph工作流初始化完成
+2026-06-14 17:14:45 - travel_kb.session_manager - INFO - 会话管理器初始化完成
+2026-06-14 17:14:45 - travel_kb.history_store - INFO - 历史记录存储器初始化完成: C:\code\project\python\travel\data\history
+2026-06-14 17:14:57 - travel_kb.session_manager - INFO - 创建新会话: session_id=51478417...
+2026-06-14 17:14:58 - travel_kb.workflow - INFO - 意图识别: 三亚有哪些必去景点？
+2026-06-14 17:15:00 - travel_kb.intent_classifier - INFO - 意图识别成功: query='三亚有哪些必去景点？', intent=景点介绍
+2026-06-14 17:15:00 - travel_kb.workflow - INFO - 知识检索: query=三亚有哪些必去景点？
+2026-06-14 17:15:01 - travel_kb.milvus_client - INFO - 向量搜索返回 10 条结果
+2026-06-14 17:15:01 - travel_kb.milvus_client - INFO - 向量搜索返回 10 条结果
+2026-06-14 17:15:01 - travel_kb.hybrid_search - INFO - 混合检索完成: query='三亚有哪些必去景点？', 返回5条结果
+2026-06-14 17:15:01 - travel_kb.workflow - INFO - 检索到 5 条结果
+2026-06-14 17:15:01 - travel_kb.workflow - INFO - 生成答案: 5条资料
+2026-06-14 17:15:14 - travel_kb.llm_client - INFO - LLM调用成功，返回1650字符
+2026-06-14 17:15:14 - travel_kb.answer_generator - INFO - 答案生成完成: query='三亚有哪些必去景点？', 长度=1650
+2026-06-14 17:15:14 - travel_kb.workflow - INFO - 工作流执行完成: intent=景点介绍, answer_len=1650
+2026-06-14 17:15:38 - travel_kb.workflow - INFO - 意图识别: 帮我规划一个三亚3日游行程
+2026-06-14 17:15:39 - travel_kb.intent_classifier - INFO - 意图识别成功: query='帮我规划一个三亚3日游行程', intent=线路检索
+2026-06-14 17:15:39 - travel_kb.workflow - INFO - 知识检索: query=帮我规划一个三亚3日游行程
+2026-06-14 17:15:39 - travel_kb.milvus_client - INFO - 向量搜索返回 10 条结果
+2026-06-14 17:15:39 - travel_kb.milvus_client - INFO - 向量搜索返回 10 条结果
+2026-06-14 17:15:39 - travel_kb.hybrid_search - INFO - 混合检索完成: query='帮我规划一个三亚3日游行程', 返回5条结果
+2026-06-14 17:15:39 - travel_kb.workflow - INFO - 检索到 5 条结果
+2026-06-14 17:15:39 - travel_kb.workflow - INFO - 生成答案: 5条资料
+2026-06-14 17:15:52 - travel_kb.llm_client - INFO - LLM调用成功，返回1509字符
+2026-06-14 17:15:52 - travel_kb.answer_generator - INFO - 答案生成完成: query='帮我规划一个三亚3日游行程', 长度=1509
+2026-06-14 17:15:52 - travel_kb.workflow - INFO - 工作流执行完成: intent=线路检索, answer_len=1509
